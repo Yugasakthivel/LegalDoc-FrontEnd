@@ -1,0 +1,137 @@
+/* src/index.css */
+
+/* Tailwind base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------
+   🌐 Global Styles
+---------------------------- */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+  background-color: #f8f9fa; /* light gray background like cite.petal.org */
+  color: #212529; /* dark text */
+}
+
+/* Smooth fade-in animation for sections */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #adb5bd; /* gray scrollbar thumb */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #868e96;
+}
+::-webkit-scrollbar-track {
+  background: #e9ecef;
+}
+
+/* ----------------------------
+   🔹 Buttons
+---------------------------- */
+button {
+  transition: all 0.3s ease;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background-color: #2563eb;
+  color: white;
+}
+
+button.primary:hover {
+  background-color: #1d4ed8;
+}
+
+/* ----------------------------
+   🧩 Cards & Panels
+---------------------------- */
+.card {
+  @apply bg-white rounded-lg shadow border border-gray-200 p-4 transition hover:shadow-md;
+}
+
+/* ----------------------------
+   📝 Headings & Text
+---------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  @apply font-semibold text-gray-900;
+}
+
+p {
+  @apply text-gray-700;
+}
+
+.text-muted {
+  @apply text-gray-500 text-sm;
+}
+
+/* ----------------------------
+   🧪 Forms
+---------------------------- */
+input,
+textarea,
+select {
+  @apply border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition;
+}
+
+/* ----------------------------
+   ⚡ Utilities
+---------------------------- */
+.text-gradient {
+  background: linear-gradient(to right, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.transition-fast {
+  transition: all 0.2s ease-in-out;
+}
+
+.transition-slow {
+  transition: all 0.5s ease-in-out;
+}
+
+/* ----------------------------
+   📱 Responsive adjustments
+---------------------------- */
+@media (max-width: 768px) {
+  .card {
+    @apply p-3 rounded-md;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+}

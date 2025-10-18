@@ -1,0 +1,27 @@
+.file-upload {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.file-upload input {
+  padding: 5px;
+}
+
+.file-upload button {
+  padding: 8px 15px;
+  background-color: #3742fa;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.file-upload button:hover {
+  background-color: #2f3542;
+}
+
+.file-upload button:disabled {
+  background-color: #dcdde1;
+  cursor: not-allowed;
+}

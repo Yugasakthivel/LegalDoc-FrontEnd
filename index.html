@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LegalDocAI</title>
+
+    <!-- ✅ Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ✅ AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- ✅ Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ✅ Custom Styles -->
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+        color: white;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      /* Glassmorphism */
+      .glass {
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Animated blobs */
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.6;
+        animation: blobMove 20s infinite;
+      }
+
+      @keyframes blobMove {
+        0% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(200px, -100px) scale(1.2); }
+        50% { transform: translate(-150px, 150px) scale(1); }
+        75% { transform: translate(150px, 200px) scale(0.8); }
+        100% { transform: translate(0, 0) scale(1); }
+      }
+
+      /* Parallax scroll effect */
+      .parallax {
+        transform: translateY(var(--scroll-offset, 0px));
+        transition: transform 0.2s ease-out;
+      }
+
+      /* Smooth fade-in animation */
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fadeIn { animation: fadeIn 0.6s ease-in-out; }
+    </style>
+  </head>
+
+  <body>
+    <!-- ✅ Animated Blobs -->
+    <div class="blob w-96 h-96 bg-purple-500 top-0 left-0 absolute"></div>
+    <!-- <div class="blob w-96 h-96 bg-pink-500 bottom-0 right-0 absolute"></div> -->
+    <div class="blob w-80 h-80 bg-yellow-400 top-40 right-40 absolute"></div>
+
+    <!-- ✅ React Root -->
+    <div id="root"></div>
+
+    <!-- ✅ React Main Script -->
+    <script type="module" src="/src/index.jsx"></script>
+
+    <!-- ✅ Typing + Parallax + AOS Init Script -->
+    <script>
+      // Typing Effect
+      const roles = ["AI Legal Assistant", "Document Analyzer", "Smart Contract Bot"];
+      let i = 0, j = 0;
+      const speed = 100, erase = 50, delay = 1500;
+
+      function typeEffect() {
+        const el = document.getElementById("typing-text");
+        if (!el) return;
+        if (j < roles[i].length) {
+          el.textContent += roles[i].charAt(j++);
+          setTimeout(typeEffect, speed);
+        } else setTimeout(eraseEffect, delay);
+      }
+
+      function eraseEffect() {
+        const el = document.getElementById("typing-text");
+        if (!el) return;
+        if (j > 0) {
+          el.textContent = roles[i].substring(0, --j);
+          setTimeout(eraseEffect, erase);
+        } else {
+          i = (i + 1) % roles.length;
+          setTimeout(typeEffect, speed);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        typeEffect();
+        AOS.init({ duration: 1000, once: true });
+      });
+
+      // Parallax Effect
+      window.addEventListener("scroll", () => {
+        document.querySelectorAll(".parallax").forEach(el => {
+          let offset = window.scrollY * 0.2;
+          el.style.setProperty("--scroll-offset", offset + "px");
+        });
+      });
+    </script>
+  </body>
+</html>

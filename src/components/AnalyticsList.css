@@ -1,0 +1,17 @@
+.analytics-list table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.analytics-list th,
+.analytics-list td {
+  padding: 10px;
+  border: 1px solid #dcdde1;
+  text-align: left;
+}
+
+.analytics-list th {
+  background-color: #2f3640;
+  color: white;
+}
